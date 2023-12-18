@@ -4,14 +4,14 @@ require_once("verificar.php");
 require_once("../conexao.php");
 $id_usuario = @$_SESSION['id_usuario'];
 
-//TRAZER DADOS DO USUÁRIO LOGADO
+//Trazendo dados do usuario logado
 $query = $pdo->query("SELECT * FROM usuarios where id = '$id_usuario'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $nome_usu = $res[0]['nome'];
 $email_usu = $res[0]['email'];
 $senha_usu = $res[0]['senha'];
 $cpf_usu = $res[0]['cpf'];
-$nivel_usu = $res[0]['nivel'];
+$cargo_usu = $res[0]['cargo'];
 
 //MENU DO PAINEL
 $pag = @$_GET['pag'];
@@ -26,8 +26,8 @@ if($pag == ""){
 	<link href="../img/Logo_Ico-4.ico" rel="shortcut icon" type="image/x-icon">
 	<link href="../css/style.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-	<link rel="stylesheet" type="text/css" href="../DataTables/datatables.min.css"/>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+	<link rel="stylesheet" type="text/css" href="../DataTables/datatables.min.css"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="../DataTables/datatables.min.js"></script>
 
@@ -157,28 +157,20 @@ if($pag == ""){
 		url: "editar-dados.php",
 		type: 'POST',
 		data: formData,
-
 		success: function (mensagem) {
             $('#msg-usu').text('');
             $('#msg-usu').removeClass()
             if (mensagem.trim() == "Salvo com Sucesso") {
-
                     $('#btn-fechar-usu').click();
                     window.location="index.php";
-
                 } else {
-
                 	$('#msg-usu').addClass('text-danger')
                     $('#msg-usu').text(mensagem)
                 }
-
-
             },
-
             cache: false,
             contentType: false,
             processData: false,
-
         });
 
 });

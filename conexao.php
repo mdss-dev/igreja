@@ -26,13 +26,13 @@ if($total_reg == 0){
 $pdo->query("INSERT INTO pr_presidente SET nome = 'Super Administrador', email = '$email_super_adm', cpf = '000.000.000-00', telefone = '(00)00000-0000' ");
 }
 
-//Criar um Usuário Super com nivel de pr_presidente padrão
+//Criar um Usuário Super com cargo de pr_presidente padrão
 $query = $pdo->query("SELECT * FROM usuarios");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $total_reg = count($res);
 
 if($total_reg == 0)
-$pdo->query("INSERT INTO usuarios SET nome = 'Super Administrador', email = '$email_super_adm', cpf = '000.000.000-00', senha = '123', nivel = 'pr_presidente', id_pessoa = 1 ");
+$pdo->query("INSERT INTO usuarios SET nome = 'Super Administrador', email = '$email_super_adm', cpf = '000.000.000-00', senha = '123', cargo = 'pr_presidente', id_pessoa = 1 ");
 
 //Criar variaveis padrões do sistema
 $query = $pdo->query("SELECT * FROM config");
@@ -53,6 +53,4 @@ $email_super_adm = $res[0]['valor'];
 $query = $pdo->query("SELECT * FROM config where nome = 'nome_igreja'");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $nome_igreja = $res[0]['valor'];
-
-
 ?>

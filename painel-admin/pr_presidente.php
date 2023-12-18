@@ -5,7 +5,7 @@ $pagina = 'pr_presidente';
 ?>
 
 <div class="col-md-12 my-3">
-	<a href="#" onclick="inserir()" type="button" class="btn btn-dark btn-sm">Pr Presidente</a>
+	<a href="#" onclick="inserir()" type="button" class="btn btn-dark btn-sm">Novo</a>
 </div>
 
 <div class="tabela bg-light">
@@ -34,7 +34,7 @@ $pagina = 'pr_presidente';
 				for($i=0; $i < $total_reg; $i++){
 					foreach ($res[$i] as $key => $value){}
 
-						$nome = $res[$i]['nome'];
+					$nome = $res[$i]['nome'];
 					$cpf = $res[$i]['cpf'];
 					$email = $res[$i]['email'];
 					$telefone = $res[$i]['telefone'];
@@ -59,7 +59,6 @@ $pagina = 'pr_presidente';
 		echo 'Não Existem Dados Cadastrados';
 	} ?>
 </div>
-
 
 <div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">

@@ -24,7 +24,6 @@ if(@count($res) > 0 and $id_reg != $id){
 	exit();
 }
 
-
 if($id == "" || $id == 0){
 	$query = $pdo->prepare("INSERT INTO pr_presidente SET nome = :nome, email = :email, cpf = :cpf, telefone = :telefone, endereco = :endereco");
 }else{
@@ -39,6 +38,4 @@ $query->bindValue(":endereco", "$endereco");
 $query->execute();
 
 echo 'Salvo com Sucesso';
-
-
 ?>

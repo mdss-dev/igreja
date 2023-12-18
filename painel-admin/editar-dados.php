@@ -10,7 +10,7 @@ $query = $pdo->query("SELECT * FROM usuarios where id = $id");
 $res = $query->fetchAll(PDO::FETCH_ASSOC);
 $cpf_antigo = $res[0]['cpf'];
 $email_antigo = $res[0]['email'];
-$nivel_usu = $res[0]['nivel'];
+$cargo_usu = $res[0]['cargo'];
 $id_pessoa = $res[0]['id_pessoa'];
 
 if($cpf_antigo != $cpf){
@@ -34,7 +34,6 @@ if($email_antigo != $email){
 	}
 }
 
-
 $query = $pdo->prepare("UPDATE usuarios SET nome = :nome, email = :email, cpf = :cpf, senha = :senha where id = '$id'");
 
 $query->bindValue(":nome", "$nome");
@@ -42,9 +41,8 @@ $query->bindValue(":email", "$email");
 $query->bindValue(":cpf", "$cpf");
 $query->bindValue(":senha", "$senha");
 
-
-if($nivel_usu == 'pr_presidente'){
-	$query2 = $pdo->prepare("UPDATE bispos SET nome = :nome, email = :email, cpf = :cpf where id = '$id_pessoa'");
+if($cargo_usu == 'pr_presidente'){
+	$query2 = $pdo->prepare("UPDATE pr_presidente SET nome = :nome, email = :email, cpf = :cpf where id = '$id_pessoa'");
 }
 
 $query2->bindValue(":nome", "$nome");
@@ -56,7 +54,6 @@ if($query2->rowCount() > 0){
 	$query->execute();
 	echo 'Salvo com Sucesso';
 }else{
-	echo 'Deu Erro, não possível atualizar o registro, tente novamente!';
+	echo 'Não foi possível atualizar o registro, pois nenhum dado foi alterado, tente novamente!';
 }
-
  ?>
